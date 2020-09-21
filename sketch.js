@@ -8,6 +8,8 @@ var diferentX_Down = 260;
 var diferentY_Down = -95;
 
 function setup() {
+  pixelDensity(1);
+  
   createCanvas(368, 520);
 }
 
