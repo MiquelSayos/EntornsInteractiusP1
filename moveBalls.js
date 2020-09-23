@@ -1,64 +1,81 @@
 var trans = 255;
+var switchIntervalD2 = 1000;
+var timeOfLastSwitchD2 = 0;
+var switchIntervalD5 = 1000;
+var timeOfLastSwitchD5 = 0;
 
 var scene1 = function(){
   //Creació boles que pujen 
-  createBall(ball_up, 4, 51, 15, diferentX_Up, diferentY_Up);
-  moveShowBalls(4, 51);
+  createBall(ball_up, 8, 51, 5, diferentX_Up, diferentY_Up);
+  moveShowBalls(8, 51);
   
   //Creació boles que baixen
-  createBall(ball_down, 5, 51, 15, diferentX_Down, diferentY_Down);
-  moveShowBalls(5, 51);
-  
+  createBall(ball_down, 7, 51, 5, diferentX_Down, diferentY_Down);
+  moveShowBalls(7, 51);
+
   //Renovar boles que han sortit de la pantalla
+    //Boles que pujen
   for(var a = 0; a < ball_up.length; a++){
-    if(ball_up[a][0].x > 368){
-      renovateBall();
+    var positionY;
+    var positionX;
+    if(ball_up[a][50].x > 368){
+      if(a == 0){
+        positionY = 520-140;
+        positionX = -140; 
+      }
+      else if(a == 1 || a == 2 || a == 3){
+        positionY = 520-65;
+        positionX = -65; 
+      }
+      else if(a == 4 || a == 5 || a == 6){
+        positionY = 520+10;
+        positionX = 10; 
+      }
+      else if(a == 7){
+        positionY = 520+85;
+        positionX = 85; 
+      }
+      renovateBall(ball_up, a, positionY, positionX, 51, 5);
     }
   }
   
-/*
-  
-  if(ball_down[0][50].y>345){
-      var velocityDown0 = random(1, 3);
-      for(var qa = 0; qa < 51; qa++){
-        ball_down[0][qa] = new Ball(268, -102, velocityDown0-(0.015*qa), transDown0);
-        transDown0=transDown0-5;
-        ball_down[0][qa].moveDown();
-        ball_down[0][qa].show();
+    //Boles que baixen
+  for(var b = 0; b < ball_down.length; b++){
+    var positionY_D;
+    var positionX_D;
+    if(ball_down[b][50].x < 0){
+      if(b == 0){
+        positionY_D = -95;
+        positionX_D = 260; 
       }
-      transDown0 = 255;
-  }
-  
-  if(ball_down[2][50].y>495){
-      var velocityDown1 = random(1, 3);
-      for(var qb = 0; qb < 51; qb++){
-        ball_down[0][qb] = new Ball(393, 23, velocityDown1-(0.015*qb), transDown2);
-        transDown2=transDown2-5;
+      else if(b == 1){
+        positionY_D = -20;
+        positionX_D = 335;
       }
-      transDown2 = 255;
-  }
-  
-  if(ball_down[4][50].y>620){
-      var velocityDown2 = random(1, 3);
-      for(var qc = 0; qc < 51; qc++){
-        ball_down[0][qc] = new Ball(543, 173, velocityDown2-(0.015*qc), transDown4);
-        transDown4=transDown4-5;
+      else if(b == 2){
+        if (millis() - timeOfLastSwitchD2 > switchIntervalD2) {
+          positionY_D = -20;
+          positionX_D = 335;
+          timeOfLastSwitchD2 = millis();
+        }
       }
-      transDown4 = 255;
-  }
-  
-  for(var j = 0; j<4; j++){
-    for(var c=0; c < 17; c++){
-      ball_up[j][c].moveUp();
-      ball_up[j][c].show();
+      else if(b == 3){
+        positionY_D = 55;
+        positionX_D = 410; 
+      }
+      else if(b == 4){
+        positionY_D = 130;
+        positionX_D = 485;  
+      }
+      else if(b == 5){
+        positionY_D = 130;
+        positionX_D = 485;
+      }
+      else if(b == 6){
+        positionY_D = 205;
+        positionX_D = 560;  
+      }
+      renovateBall(ball_down, b, positionY_D, positionX_D, 51, 5);
     }
   }
-  
-  for(var m = 0; m<5; m++){
-    for(var b=0; b < 51; b++){
-      ball_down[m][b].moveDown();
-      ball_down[m][b].show();
-    }
-  }
-  */
 };
