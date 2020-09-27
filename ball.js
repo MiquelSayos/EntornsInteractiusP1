@@ -6,7 +6,7 @@ var Ball = function(x, y, speed, z) {
 
     this.show = function() {
         noStroke();
-        fill(255, 51, 51, this.z);
+        fill(valorRGB, 51, 51, this.z);
         ellipse(this.x, this.y, 50, 50);
       };
     this.moveUp = function() {
